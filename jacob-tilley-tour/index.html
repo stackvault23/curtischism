@@ -74,6 +74,10 @@ main { padding: 24px 40px 40px; }
 .homes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin: 8px 0 12px; }
 .home { border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 10px; padding: 12px 14px; background: var(--white); display: flex; flex-direction: column; gap: 6px; transition: background .2s, border-color .2s; }
 .home.seen { background: var(--green-light); border-left-color: var(--green); }
+.btn-sm.zillow { background: #006aff; border-color: #006aff; color: #fff; }
+.btn-sm.zillow:hover { background: #0057d1; border-color: #0057d1; }
+.home.nc { border-left-color: var(--pending); }
+.home.nc .city { color: var(--pending); font-weight: 600; }
 .home .price { font-size: 1.15rem; font-weight: 800; color: var(--navy); }
 .home .addr { font-weight: 600; }
 .home .city { font-size: 0.78rem; color: var(--muted); }
@@ -153,7 +157,7 @@ main { padding: 24px 40px 40px; }
 <section class="intro">
   <p>Hi Jacob and Tilley,</p>
   <p>I put together a simple way to spend the weekend so you can get a feel for the areas without zigzagging all over the valley. I also pulled a few current homes to drive by in each area. Those may change before the weekend, but they'll give you a good reference point for what your budget buys in each location.</p>
-  <p>I included the homes and neighborhoods along with the parks, restaurants, shopping and outdoor access you would likely use day to day. Tap any address for directions, and check off homes as you drive by. Your check-marks, thumbs and notes stay saved on this phone.</p>
+  <p>I included the homes and neighborhoods along with the parks, restaurants, shopping and outdoor access you would likely use day to day. Tap Zillow for photos and details, Directions to navigate, and check off homes as you drive by. Your check-marks, thumbs and notes stay saved on this phone.</p>
   <p class="sig">— Curtis</p>
 </section>
 
@@ -188,8 +192,8 @@ main { padding: 24px 40px 40px; }
       <h3>Boise Bench / West Boise</h3>
       <p>A more central Boise option with a much easier daily commute downtown.</p>
       <div class="homes">
-        <div class="home" data-id="670-berwick"><div class="price">$644,900</div><div class="addr">670 S Berwick Dr</div><div class="city">Boise, ID · Bench</div></div>
-        <div class="home" data-id="2570-bruins"><div class="price">$699,900</div><div class="addr">2570 N Bruins Cir</div><div class="city">Boise, ID · West Boise</div></div>
+        <div class="home" data-id="670-berwick" data-zillow="670-S-Berwick-Dr-Boise-ID-83706/79613830_zpid"><div class="price">$644,900</div><div class="addr">670 S Berwick Dr</div><div class="city">Boise, ID · Bench</div></div>
+        <div class="home" data-id="2570-bruins" data-zillow="2570-N-Bruins-Cir-Boise-ID-83704/79624417_zpid"><div class="price">$699,900</div><div class="addr">2570 N Bruins Cir</div><div class="city">Boise, ID · West Boise</div></div>
       </div>
     </div>
 
@@ -199,9 +203,9 @@ main { padding: 24px 40px 40px; }
       <p>Spend the afternoon in Eagle. Eagle Hills is still one of my favorite established-Eagle comparisons in your budget range because of its more mature feel and golf-course proximity.</p>
       <div class="areas"><span>Eagle Hills</span><span>Banbury</span></div>
       <div class="homes">
-        <div class="home" data-id="698-eagle-hills"><div class="price">$599,900</div><div class="addr">698 N Eagle Hills Way</div><div class="city">Eagle, ID · Eagle Hills</div></div>
-        <div class="home" data-id="2955-shadowview"><div class="price">$639,000</div><div class="addr">2955 E Shadowview St</div><div class="city">Eagle, ID · Banbury area</div></div>
-        <div class="home" data-id="492-ridge"><div class="price">$725,000</div><div class="addr">492 E Ridge Dr</div><div class="city">Eagle, ID</div></div>
+        <div class="home" data-id="698-eagle-hills" data-zillow="698-N-Eagle-Hills-Way-Eagle-ID-83616/72682724_zpid"><div class="price">$599,900</div><div class="addr">698 N Eagle Hills Way</div><div class="city">Eagle, ID · Eagle Hills</div></div>
+        <div class="home" data-id="2955-shadowview" data-zillow="2955-E-Shadowview-St-Eagle-ID-83616/79647294_zpid"><div class="price">$639,000</div><div class="addr">2955 E Shadowview St</div><div class="city">Eagle, ID · Banbury area</div></div>
+        <div class="home" data-id="492-ridge" data-zillow="492-E-Ridge-Dr-Eagle-ID-83616/79618689_zpid"><div class="price">$725,000</div><div class="addr">492 E Ridge Dr</div><div class="city">Eagle, ID</div></div>
       </div>
     </div>
 
@@ -236,8 +240,8 @@ main { padding: 24px 40px 40px; }
       <p>Tuscany, Calistoga and Reflection Ridge, around Amity/Eagle and Locust Grove/Amity. This is one of the better combinations of home size, condition and access back toward Boise.</p>
       <div class="areas"><span>Tuscany</span><span>Calistoga</span><span>Reflection Ridge</span></div>
       <div class="homes">
-        <div class="home" data-id="819-crest-ridge"><div class="price">$649,900</div><div class="addr">819 E Crest Ridge Dr</div><div class="city">Meridian, ID · South Meridian</div></div>
-        <div class="home" data-id="1058-radiant-ridge"><div class="price">$729,000</div><div class="addr">1058 E Radiant Ridge Dr</div><div class="city">Meridian, ID · South Meridian</div></div>
+        <div class="home" data-id="819-crest-ridge" data-zillow="819-E-Crest-Ridge-Dr-Meridian-ID-83642/246647622_zpid"><div class="price">$649,900</div><div class="addr">819 E Crest Ridge Dr</div><div class="city">Meridian, ID · South Meridian</div></div>
+        <div class="home" data-id="1058-radiant-ridge" data-zillow="1058-E-Radiant-Ridge-Dr-Meridian-ID-83642/124027412_zpid"><div class="price">$729,000</div><div class="addr">1058 E Radiant Ridge Dr</div><div class="city">Meridian, ID · South Meridian</div></div>
       </div>
       <div class="amenities">
         <a class="amenity" data-q="Discovery Park, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Discovery Park</div><div class="desc">Walking paths, playground, splash pad, pickleball, bike park, sports fields and open space</div></a>
@@ -258,10 +262,10 @@ main { padding: 24px 40px 40px; }
       <p>Paramount, Bainbridge and Lochsa Falls. I definitely think these are worth seeing. Paramount especially gives you a good comparison point for how Meridian feels at your price point.</p>
       <div class="areas"><span>Paramount</span><span>Bainbridge</span><span>Lochsa Falls</span></div>
       <div class="homes">
-        <div class="home" data-id="763-laughton"><div class="price">$615,000</div><div class="addr">763 W Laughton Dr</div><div class="city">Meridian, ID · North Meridian</div></div>
-        <div class="home" data-id="458-valentino"><div class="price">$630,900</div><div class="addr">458 W Valentino St</div><div class="city">Meridian, ID · North Meridian</div></div>
-        <div class="home" data-id="742-caine"><div class="price">$649,900</div><div class="addr">742 W Caine St</div><div class="city">Meridian, ID · North Meridian</div></div>
-        <div class="home" data-id="5949-moose-creek"><div class="price">$649,900</div><div class="addr">5949 N Moose Creek Way</div><div class="city">Meridian, ID · North Meridian</div></div>
+        <div class="home" data-id="763-laughton" data-zillow="763-W-Laughton-Dr-Meridian-ID-83646/83172356_zpid"><div class="price">$615,000</div><div class="addr">763 W Laughton Dr</div><div class="city">Meridian, ID · North Meridian</div></div>
+        <div class="home" data-id="458-valentino" data-zillow="458-W-Valentino-St-Meridian-ID-83646/83164042_zpid"><div class="price">$630,900</div><div class="addr">458 W Valentino St</div><div class="city">Meridian, ID · North Meridian</div></div>
+        <div class="home" data-id="742-caine" data-zillow="742-W-Caine-St-Meridian-ID-83646/79617754_zpid"><div class="price">$649,900</div><div class="addr">742 W Caine St</div><div class="city">Meridian, ID · North Meridian</div></div>
+        <div class="home" data-id="5949-moose-creek" data-zillow="5949-N-Moose-Creek-Way-Meridian-ID-83646/79620183_zpid"><div class="price">$649,900</div><div class="addr">5949 N Moose Creek Way</div><div class="city">Meridian, ID · North Meridian</div></div>
       </div>
       <div class="amenities">
         <a class="amenity" data-q="The Village at Meridian, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Shopping &amp; dining</div><div class="name">The Village at Meridian</div><div class="desc">Restaurants, coffee, shopping, movie theater and outdoor gathering spaces</div></a>
@@ -279,6 +283,11 @@ main { padding: 24px 40px 40px; }
         <a class="amenity" data-q="Prescott Ridge, Meridian, ID" target="_blank" rel="noopener"><div class="kind">New construction</div><div class="name">Prescott Ridge</div><div class="desc">Good Meridian comparison and more relevant to the downtown commute than the farther-south options</div></a>
         <a class="amenity" data-q="Oaks North Toll Brothers, Meridian, ID" target="_blank" rel="noopener"><div class="kind">New construction</div><div class="name">Oaks North by Toll Brothers</div><div class="desc">Worth driving through for the location and product comparison</div></a>
         <a class="amenity" data-q="Paloma Ridge, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Optional</div><div class="name">Paloma Ridge</div><div class="desc">Value comparison farther southwest. Pay close attention to the commute.</div></a>
+      </div>
+      <div class="homes">
+        <div class="home nc" data-id="5770-arctic-point" data-zillow="5770-N-Arctic-Point-Ave-Meridian-ID-83646/461691817_zpid"><div class="price">$574,990</div><div class="addr">5770 N Arctic Point Ave</div><div class="city">Meridian, ID · Prescott Ridge (new)</div></div>
+        <div class="home nc" data-id="5918-parachute" data-zillow="5918-W-Parachute-Dr-Meridian-ID-83646/461310368_zpid"><div class="price">$539,990</div><div class="addr">5918 W Parachute Dr</div><div class="city">Meridian, ID · Prescott Ridge (new)</div></div>
+        <div class="home nc" data-id="8426-wavecrest" data-zillow="8426-S-Wavecrest-Ave-Meridian-ID-83642/461282020_zpid"><div class="price">$586,000</div><div class="addr">8426 S Wavecrest Ave</div><div class="city">Meridian, ID · Paloma Ridge (new, optional)</div></div>
       </div>
       <div class="callout note">New construction may feel more planned and uniform than the established neighborhoods. That isn't necessarily a negative, but it should help you quickly figure out which direction feels more like you. <a href="#new-construction"><strong>Read the model-home note before any visit.</strong></a></div>
     </div>
@@ -300,7 +309,7 @@ main { padding: 24px 40px 40px; }
       <p>Star is worth seeing because you can often get a newer home or more house for the money. The tradeoff is the commute, so keep that front of mind and compare it honestly against Boise, Eagle and Meridian.</p>
       <div class="areas"><span>Cresta del Sol</span><span>Heron River</span><span>Colina Vista</span><span>Aliso Creek</span><span>Star Creek</span><span>Greendale Grove</span><span>Hope Springs</span></div>
       <div class="homes">
-        <div class="home" data-id="9297-gladiola"><div class="price">$744,900</div><div class="addr">9297 W Gladiola Ln</div><div class="city">Star, ID · Cresta del Sol</div></div>
+        <div class="home" data-id="9297-gladiola" data-zillow="9297-W-Gladiola-Ln-Star-ID-83669/464750892_zpid"><div class="price">$744,900</div><div class="addr">9297 W Gladiola Ln</div><div class="city">Star, ID · Cresta del Sol</div></div>
         <div class="home" data-id="3787-kelseyville"><div class="price">$648,000</div><div class="addr">3787 N Kelseyville Way</div><div class="city">Star, ID · Cresta del Sol</div></div>
       </div>
     </div>
@@ -324,6 +333,9 @@ main { padding: 24px 40px 40px; }
       <div class="amenities">
         <a class="amenity" data-q="Cranefield, Star, ID" target="_blank" rel="noopener"><div class="kind">New construction</div><div class="name">Cranefield</div><div class="desc">One of the more realistic new-construction comparisons in your price range</div></a>
         <a class="amenity" data-q="Heirloom Ridge, Star, ID" target="_blank" rel="noopener"><div class="kind">New construction · pre-register first</div><div class="name">Heirloom Ridge</div><div class="desc">Worth seeing for a newer product comparison</div></a>
+      </div>
+      <div class="homes">
+        <div class="home nc" data-id="11776-snow-flower" data-zillow="11776-W-Snow-Flower-Dr-Star-ID-83669/459161016_zpid"><div class="price">$529,995</div><div class="addr">11776 W Snow Flower Dr</div><div class="city">Star, ID · Cranefield (new)</div></div>
       </div>
       <div class="callout note"><strong>Heirloom Ridge:</strong> please let me pre-register you before you go.</div>
     </div>
@@ -398,7 +410,9 @@ main { padding: 24px 40px 40px; }
     var addr = full(h);
     var actions = document.createElement('div');
     actions.className = 'home-actions';
+    var zpid = h.getAttribute('data-zillow');
     actions.innerHTML =
+      (zpid ? '<a class="btn-sm zillow" target="_blank" rel="noopener" href="https://www.zillow.com/homedetails/' + zpid + '">Zillow</a>' : '') +
       '<a class="btn-sm" target="_blank" rel="noopener" href="' + DIR + '&destination=' + encodeURIComponent(addr) + '">Directions</a>' +
       '<label class="seen-toggle"><input type="checkbox"> Drove by</label>' +
       '<span class="rate"><button type="button" class="up" aria-label="Liked it">👍</button><button type="button" class="down" aria-label="Not for us">👎</button></span>';
