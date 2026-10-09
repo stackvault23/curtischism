@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danya Wind — Weekend Driving Tour · Treasure Valley, ID</title>
+<meta name="description" content="A self-guided weekend driving tour of Eagle, Boise and Meridian with homes, parks, food and new-construction comparisons.">
+<style>
+:root {
+  --navy: #1a2e4a;
+  --gold: #c4963d;
+  --gold-light: #f5e6c8;
+  --green: #2e7d32;
+  --green-light: #e8f5e9;
+  --yellow: #e65100;
+  --yellow-light: #fff3e0;
+  --red: #c62828;
+  --red-light: #ffebee;
+  --gray: #f4f6f9;
+  --border: #e0e4ea;
+  --text: #1a1a2e;
+  --muted: #6b7280;
+  --white: #ffffff;
+  --pending: #7b1fa2;
+  --pending-light: #f3e5f5;
+}
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray); color: var(--text); font-size: 14px; line-height: 1.5; }
+a { color: inherit; }
+.page-wrap { max-width: 1280px; margin: 0 auto; background: var(--gray); }
+
+.site-header { background: var(--navy); color: var(--white); padding: 32px 40px 28px; text-align: center; }
+.header-eyebrow { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 10px; font-weight: 600; }
+.site-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.2; }
+.header-sub { font-size: 0.88rem; color: rgba(255,255,255,0.65); max-width: 640px; margin: 0 auto; }
+
+.visit-bar { background: var(--gold); color: var(--navy); padding: 11px 40px; font-weight: 600; font-size: 0.88rem; text-align: center; }
+
+.day-nav { position: sticky; top: 0; z-index: 10; background: var(--white); border-bottom: 1px solid var(--border); display: flex; gap: 6px; padding: 10px 16px; overflow-x: auto; justify-content: center; }
+.day-nav a { text-decoration: none; font-weight: 600; font-size: 0.82rem; color: var(--navy); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border); white-space: nowrap; }
+.day-nav a:hover { background: var(--gold-light); border-color: var(--gold); }
+
+main { padding: 24px 40px 40px; }
+
+.intro { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; margin-bottom: 20px; }
+.intro p + p { margin-top: 10px; }
+.intro .sig { font-weight: 700; color: var(--navy); }
+
+.progress { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px; margin-bottom: 28px; }
+.progress-track { flex: 1; height: 8px; background: var(--gray); border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; background: var(--green); transition: width .3s; }
+.progress-label { font-weight: 600; font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
+
+.day { margin-bottom: 36px; scroll-margin-top: 60px; }
+.day-head { background: var(--navy); color: var(--white); border-radius: 12px 12px 0 0; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.day-head .eyebrow { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; }
+.day-head h2 { font-size: 1.4rem; font-weight: 800; }
+.route-btn { background: var(--gold); color: var(--navy); text-decoration: none; font-weight: 700; font-size: 0.82rem; padding: 9px 16px; border-radius: 8px; white-space: nowrap; }
+.route-btn:hover { filter: brightness(1.05); }
+.day-body { background: var(--white); border: 1px solid var(--border); border-top: 0; border-radius: 0 0 12px 12px; padding: 22px 24px; }
+.day-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: var(--pending-light); color: var(--pending); padding: 3px 9px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+
+.stop { position: relative; padding-left: 34px; padding-bottom: 22px; }
+.stop:last-child { padding-bottom: 0; }
+.stop::before { content: ""; position: absolute; left: 11px; top: 26px; bottom: 0; width: 2px; background: var(--border); }
+.stop:last-child::before { display: none; }
+.stop-num { position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--gold); color: var(--navy); font-weight: 800; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; }
+.stop h3 { font-size: 1.05rem; color: var(--navy); font-weight: 700; margin-bottom: 4px; }
+.stop > p { color: #374151; margin-bottom: 10px; }
+.areas { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.areas span { font-size: 0.75rem; font-weight: 600; background: var(--gray); border: 1px solid var(--border); padding: 3px 9px; border-radius: 999px; }
+
+.homes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin: 8px 0 12px; }
+.home { border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 10px; padding: 12px 14px; background: var(--white); display: flex; flex-direction: column; gap: 6px; transition: background .2s, border-color .2s; }
+.home.seen { background: var(--green-light); border-left-color: var(--green); }
+.btn-sm.zillow { background: #006aff; border-color: #006aff; color: #fff; }
+.btn-sm.zillow:hover { background: #0057d1; border-color: #0057d1; }
+.home.nc { border-left-color: var(--pending); }
+.home.nc .city { color: var(--pending); font-weight: 600; }
+.home .price { font-size: 1.15rem; font-weight: 800; color: var(--navy); }
+.home .addr { font-weight: 600; }
+.home .addr:first-child { font-size: 1.05rem; font-weight: 800; color: var(--navy); }
+.home .city { font-size: 0.78rem; color: var(--muted); }
+.home-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
+.btn-sm { font-size: 0.75rem; font-weight: 600; text-decoration: none; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--white); color: var(--navy); cursor: pointer; font-family: inherit; }
+.btn-sm:hover { border-color: var(--gold); background: var(--gold-light); }
+.rate { display: flex; gap: 4px; margin-left: auto; }
+.rate button { font-size: 0.9rem; line-height: 1; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--border); background: var(--white); cursor: pointer; }
+.rate button[aria-pressed="true"].up { background: var(--green-light); border-color: var(--green); }
+.rate button[aria-pressed="true"].down { background: var(--red-light); border-color: var(--red); }
+.seen-toggle { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; color: var(--muted); cursor: pointer; }
+.seen-toggle input { accent-color: var(--green); width: 15px; height: 15px; }
+
+.amenities { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-top: 4px; }
+.amenity { background: var(--gray); border-radius: 10px; padding: 10px 12px; text-decoration: none; display: block; border: 1px solid transparent; }
+.amenity:hover { border-color: var(--gold); }
+.amenity .kind { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: var(--gold); }
+.amenity .name { font-weight: 700; color: var(--navy); }
+.amenity .desc { font-size: 0.8rem; color: var(--muted); }
+
+.callout { border-radius: 10px; padding: 12px 16px; margin-top: 12px; font-size: 0.88rem; }
+.callout.note { background: var(--yellow-light); border-left: 4px solid var(--yellow); }
+.callout.info { background: var(--gold-light); border-left: 4px solid var(--gold); }
+
+.alert { background: var(--red-light); border: 1px solid #f3c1c1; border-left: 6px solid var(--red); border-radius: 12px; padding: 22px 26px; margin-bottom: 36px; scroll-margin-top: 60px; }
+.alert h2 { color: var(--red); font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+.alert p { margin-bottom: 10px; }
+.alert ul { padding-left: 20px; margin-bottom: 10px; }
+.alert li { margin-bottom: 4px; }
+.alert .say { background: var(--white); border-radius: 8px; padding: 10px 14px; font-weight: 700; color: var(--navy); margin: 10px 0; }
+
+.notes { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; margin-bottom: 36px; }
+.notes h2 { color: var(--navy); font-size: 1.2rem; font-weight: 800; margin-bottom: 4px; }
+.notes p { color: var(--muted); font-size: 0.85rem; margin-bottom: 10px; }
+.notes textarea { width: 100%; min-height: 120px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; resize: vertical; }
+.notes-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.7); text-align: center; padding: 26px 20px; font-size: 0.82rem; }
+.site-footer strong { color: var(--white); }
+.site-footer a { color: var(--gold); }
+
+@media (max-width: 700px) {
+  .site-header { padding: 26px 16px 22px; }
+  .site-header h1 { font-size: 1.5rem; }
+  .visit-bar { padding: 10px 16px; }
+  .day-nav { justify-content: flex-start; }
+  main { padding: 16px 16px 32px; }
+  .intro, .day-body, .alert, .notes { padding: 18px 16px; }
+  .day-head { padding: 16px; }
+}
+@media print {
+  .day-nav, .route-btn, .home-actions, .notes-actions, .progress { display: none !important; }
+  .day { break-inside: avoid-page; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<header class="site-header">
+  <div class="header-eyebrow">Curtis Chism · eXp Realty · Treasure Valley, ID</div>
+  <h1>Danya Wind — Weekend Driving Tour</h1>
+  <div class="header-sub">Eagle, downtown Boise, Barber / East Boise and Meridian, laid out as two easy loops instead of a zigzag across the valley.</div>
+</header>
+<div class="visit-bar">Saturday: Eagle → Downtown Boise → Barber / East Boise &nbsp;·&nbsp; Sunday: North Meridian → South Meridian</div>
+
+<nav class="day-nav" aria-label="Tour days">
+  <a href="#saturday">Sat · Eagle, Boise &amp; Barber</a>
+  <a href="#sunday">Sun · Meridian</a>
+  <a href="#new-construction">⚠ Model homes</a>
+  <a href="#notes">My notes</a>
+</nav>
+
+<main>
+
+<section class="intro">
+  <p>Hi Danya,</p>
+  <p>I put together a simple way to spend the weekend so you can get a feel for the areas without zigzagging all over the valley. Both days start from the Hilton Garden Inn in Eagle (I'm not sure where you ended up staying, but I think that's the one I had suggested). If you're somewhere else, the routes still work in the same order.</p>
+  <p>Saturday gives you Eagle's lifestyle, downtown Boise and every Barber option in one eastbound loop. Sunday works north to south through Meridian. I included the parks, restaurants and shopping you'd likely use day to day along with the homes. Tap Zillow for photos and details, Directions to navigate, and check off homes as you drive by. Your check-marks, thumbs and notes stay saved on this phone.</p>
+  <p class="sig">— Curtis</p>
+</section>
+
+<div class="progress" aria-live="polite">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 of 0 homes seen</div>
+</div>
+
+<!-- SATURDAY -->
+<section class="day" id="saturday">
+  <div class="day-head">
+    <div><div class="eyebrow">Saturday</div><h2>Eagle → Downtown Boise → Barber / East Boise</h2></div>
+    <a class="route-btn" target="_blank" rel="noopener" data-route="sat">Open Saturday route ↗</a>
+  </div>
+  <div class="day-body">
+
+    <div class="stop">
+      <div class="stop-num">1</div>
+      <h3>Start in Eagle</h3>
+      <p>Start from the Hilton Garden Inn and head to the first home.</p>
+      <div class="homes">
+        <div class="home" data-id="7050-tolland" data-zillow="7050-W-Tolland-St-Eagle-ID-83616/461550198_zpid"><div class="addr">7050 W Tolland St</div><div class="city">Eagle, ID</div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">2</div>
+      <h3>Eagle new construction <span class="day-tag">Pre-register first</span></h3>
+      <p>Pacific Lifestyle and Torrente are both worth seeing while you're in Eagle. They'll give you a feel for newer product, finishes and lot sizes to compare against the established neighborhoods.</p>
+      <div class="amenities">
+        <a class="amenity" data-q="Pacific Lifestyle Homes, Eagle, ID" target="_blank" rel="noopener"><div class="kind">New construction · pre-register first</div><div class="name">Pacific Lifestyle</div><div class="desc">Eagle new-construction comparison</div></a>
+        <a class="amenity" data-q="Torrente, Eagle, ID" target="_blank" rel="noopener"><div class="kind">New construction · pre-register first</div><div class="name">Torrente</div><div class="desc">Eagle new-construction comparison</div></a>
+      </div>
+      <div class="callout note"><strong>Pacific Lifestyle &amp; Torrente:</strong> I need to pre-register you before you go. Text me if you decide to stop by. <a href="#new-construction"><strong>Read the model-home note before any visit.</strong></a></div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">3</div>
+      <h3>Eagle Island State Park</h3>
+      <p>Take a drive through Eagle Island to see the outdoor side of Eagle.</p>
+      <div class="amenities">
+        <a class="amenity" data-q="Eagle Island State Park, Eagle, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Eagle Island State Park</div><div class="desc">Swimming beach, picnic areas, trails and lots of open space</div></a>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">4</div>
+      <h3>Downtown Eagle</h3>
+      <p>Walk Reid Merrill Park and the downtown streets, and grab a bite.</p>
+      <div class="amenities">
+        <a class="amenity" data-q="Reid Merrill Park, Eagle, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Reid Merrill Park</div><div class="desc">Playgrounds, walking paths and river access</div></a>
+        <a class="amenity" data-q="Crave, Eagle, ID" target="_blank" rel="noopener"><div class="kind">Food</div><div class="name">Crave</div><div class="desc">Downtown Eagle</div></a>
+        <a class="amenity" data-q="Caci, Eagle, ID" target="_blank" rel="noopener"><div class="kind">Food</div><div class="name">Caci</div><div class="desc">Downtown Eagle</div></a>
+        <a class="amenity" data-q="Pig Latin, Eagle, ID" target="_blank" rel="noopener"><div class="kind">Food</div><div class="name">Pig Latin</div><div class="desc">Downtown Eagle</div></a>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">5</div>
+      <h3>Downtown Boise</h3>
+      <p>Head into downtown Boise. Drive past the Capitol, walk 8th Street, and spend a few minutes on the Greenbelt at Ann Morrison Park.</p>
+      <div class="amenities">
+        <a class="amenity" data-q="Idaho State Capitol, Boise, ID" target="_blank" rel="noopener"><div class="kind">Drive</div><div class="name">Idaho State Capitol</div><div class="desc">The heart of downtown</div></a>
+        <a class="amenity" data-q="8th Street, Downtown Boise, ID" target="_blank" rel="noopener"><div class="kind">Walk</div><div class="name">8th Street</div><div class="desc">Restaurants, shops and patios</div></a>
+        <a class="amenity" data-q="Boise River Greenbelt, Boise, ID" target="_blank" rel="noopener"><div class="kind">Walk</div><div class="name">Boise River Greenbelt</div><div class="desc">Riverside path running through the city</div></a>
+        <a class="amenity" data-q="Ann Morrison Park, Boise, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Ann Morrison Park</div><div class="desc">Large park with Greenbelt access, open space and a big playground</div></a>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">6</div>
+      <h3>Barber / East Boise</h3>
+      <p>Continue east to Barber. These four homes give you every Barber option in one pass.</p>
+      <div class="areas"><span>Barber Valley</span><span>Harris Ranch area</span><span>East Boise</span></div>
+      <div class="homes">
+        <div class="home" data-id="5782-millet" data-zillow="5782-E-Millet-Dr-Boise-ID-83716/122062378_zpid"><div class="addr">5782 E Millet Dr</div><div class="city">Boise, ID · Barber / East Boise</div></div>
+        <div class="home" data-id="4172-trekker-rim" data-zillow="4172-E-Trekker-Rim-Dr-Boise-ID-83716/79698825_zpid"><div class="addr">4172 E Trekker Rim Dr</div><div class="city">Boise, ID · Barber / East Boise</div></div>
+        <div class="home" data-id="3555-caddis" data-zillow="3555-S-Caddis-Way-Boise-ID-83716/124753462_zpid"><div class="addr">3555 S Caddis Way</div><div class="city">Boise, ID · Barber / East Boise</div></div>
+        <div class="home" data-id="2985-shady" data-zillow="2985-S-Shady-Ln-Boise-ID-83716/331267041_zpid"><div class="addr">2985 S Shady Ln</div><div class="city">Boise, ID · Barber / East Boise</div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">7</div>
+      <h3>Finish: Barber Park &amp; Bown Crossing</h3>
+      <p>Wrap up at Barber Park or the Greenbelt, then head to Bown Crossing for dinner or coffee.</p>
+      <div class="amenities">
+        <a class="amenity" data-q="Barber Park, Boise, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Barber Park</div><div class="desc">Riverside park and Greenbelt access</div></a>
+        <a class="amenity" data-q="Bown Crossing, Boise, ID" target="_blank" rel="noopener"><div class="kind">Food &amp; coffee</div><div class="name">Bown Crossing</div><div class="desc">Neighborhood restaurants and coffee shops</div></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUNDAY -->
+<section class="day" id="sunday">
+  <div class="day-head">
+    <div><div class="eyebrow">Sunday</div><h2>North Meridian → Central / South Meridian</h2></div>
+    <a class="route-btn" target="_blank" rel="noopener" data-route="sun">Open Sunday route ↗</a>
+  </div>
+  <div class="day-body">
+
+    <div class="stop">
+      <div class="stop-num">1</div>
+      <h3>North Meridian</h3>
+      <p>Start from the Hilton Garden Inn and work north to south. 5361 W Avilla Dr is an optional backup, but it's worth seeing for comparison.</p>
+      <div class="homes">
+        <div class="home" data-id="5361-avilla" data-zillow="5361-W-Avilla-Dr-Meridian-ID-83646/338345309_zpid"><div class="addr">5361 W Avilla Dr</div><div class="city">Meridian, ID · North Meridian (optional backup)</div></div>
+        <div class="home" data-id="3712-twin-eagles" data-zillow="3712-N-Twin-Eagles-Way-Meridian-ID-83646/72688807_zpid"><div class="addr">3712 N Twin Eagles Way</div><div class="city">Meridian, ID · North Meridian</div></div>
+        <div class="home" data-id="4158-granger" data-zillow="4158-E-Granger-Dr-Meridian-ID-83646/79655423_zpid"><div class="addr">4158 E Granger Dr</div><div class="city">Meridian, ID · North Meridian</div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">2</div>
+      <h3>Settlers Park</h3>
+      <div class="amenities">
+        <a class="amenity" data-q="Settlers Park, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Settlers Park</div><div class="desc">Playgrounds, sports facilities, pond and a splash pad</div></a>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">3</div>
+      <h3>Central &amp; South Meridian</h3>
+      <p>Continue south through these four.</p>
+      <div class="homes">
+        <div class="home" data-id="2078-ice-bear" data-zillow="2078-S-Ice-Bear-Way-Meridian-ID-83642/79706715_zpid"><div class="addr">2078 S Ice Bear Way</div><div class="city">Meridian, ID · South Meridian</div></div>
+        <div class="home" data-id="4728-selawick" data-zillow="4728-S-Selawick-Way-Meridian-ID-83642/465562344_zpid"><div class="addr">4728 S Selawick Way</div><div class="city">Meridian, ID · South Meridian</div></div>
+        <div class="home" data-id="1839-acme" data-zillow="1839-E-Acme-St-Meridian-ID-83642/464570319_zpid"><div class="addr">1839 E Acme St</div><div class="city">Meridian, ID · South Meridian</div></div>
+        <div class="home" data-id="5940-pinpoint" data-zillow="5940-S-Pinpoint-Way-Meridian-ID-83642/465223942_zpid"><div class="addr">5940 S Pinpoint Way</div><div class="city">Meridian, ID · South Meridian</div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">4</div>
+      <h3>Finish at Discovery Park</h3>
+      <div class="amenities">
+        <a class="amenity" data-q="Discovery Park, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Discovery Park</div><div class="desc">Walking paths, playground, splash pad, pickleball, bike park, sports fields and open space</div></a>
+      </div>
+      <div class="callout info">Discovery Park is a great example of the newer public amenities in this part of Meridian.</div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-num">5</div>
+      <h3>On the way back: The Village &amp; Kleiner Park</h3>
+      <p>Stop for dinner and a little shopping. It's a practical feel for Meridian's everyday amenities.</p>
+      <div class="amenities">
+        <a class="amenity" data-q="The Village at Meridian, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Shopping &amp; dining</div><div class="name">The Village at Meridian</div><div class="desc">Restaurants, coffee, shopping, movie theater and outdoor gathering spaces</div></a>
+        <a class="amenity" data-q="Kleiner Park, Meridian, ID" target="_blank" rel="noopener"><div class="kind">Park</div><div class="name">Kleiner Park</div><div class="desc">Pond, walking paths, playground and splash pad, next to The Village</div></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEW CONSTRUCTION WARNING -->
+<section class="alert" id="new-construction">
+  <h2>⚠ Before any model-home or new-construction stop</h2>
+  <p>Please text or call me before you visit a model home if you can. When you arrive, tell the sales representative right away:</p>
+  <div class="say">"I'm working with Curtis Chism at eXp Realty."</div>
+  <p><strong>Please do not do any of the following until we've confirmed you're registered with me:</strong></p>
+  <ul>
+    <li>Register online</li>
+    <li>Scan a QR code</li>
+    <li>Sign in at the sales office</li>
+    <li>Give out your contact information</li>
+    <li>Sign anything</li>
+  </ul>
+  <p>Many builders tie agent representation to the buyer's first contact. I want to make sure I can represent you, help with negotiations and protect your interests throughout the process.</p>
+  <p><strong>Pacific Lifestyle &amp; Torrente (Eagle):</strong> please let me pre-register you before you go.</p>
+</section>
+
+<!-- NOTES -->
+<section class="notes" id="notes">
+  <h2>Your notes</h2>
+  <p>Jot down what stands out as you drive. Notes save on this device. Use "Copy notes" to text them to me.</p>
+  <textarea id="notesBox" placeholder="e.g. Loved the Greenbelt access in Barber; North Meridian felt quieter than I expected…"></textarea>
+  <div class="notes-actions">
+    <button class="btn-sm" id="copyNotes" type="button">Copy notes + ratings</button>
+    <a class="btn-sm" id="emailNotes" href="#">Email to Curtis</a>
+  </div>
+</section>
+
+<section class="intro">
+  <p>Enjoy the weekend, and keep me posted on the areas that stand out most. I can narrow the search further once you have a better feel for the valley.</p>
+  <p class="sig">— Curtis</p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <strong>Curtis Chism</strong> · eXp Realty · Treasure Valley, Idaho<br>
+  <a href="mailto:curtis@curtischism.com">curtis@curtischism.com</a><br>
+  <span style="opacity:.6">Listings are current as of when this guide was prepared and may change before your visit.</span>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var MAPS = 'https://www.google.com/maps/search/?api=1&query=';
+  var DIR = 'https://www.google.com/maps/dir/?api=1';
+  var KEY = 'dw-tour-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  function full(home) {
+    return home.querySelector('.addr').textContent + ', ' + home.querySelector('.city').textContent.split('·')[0].trim();
+  }
+
+  document.querySelectorAll('.amenity[data-q]').forEach(function (a) {
+    a.href = MAPS + encodeURIComponent(a.getAttribute('data-q'));
+  });
+
+  var homes = Array.prototype.slice.call(document.querySelectorAll('.home'));
+  homes.forEach(function (h) {
+    var id = h.getAttribute('data-id');
+    var s = state[id] || (state[id] = {});
+    var addr = full(h);
+    var actions = document.createElement('div');
+    actions.className = 'home-actions';
+    var zpid = h.getAttribute('data-zillow');
+    actions.innerHTML =
+      (zpid ? '<a class="btn-sm zillow" target="_blank" rel="noopener" href="https://www.zillow.com/homedetails/' + zpid + '">Zillow</a>' : '') +
+      '<a class="btn-sm" target="_blank" rel="noopener" href="' + DIR + '&destination=' + encodeURIComponent(addr) + '">Directions</a>' +
+      '<label class="seen-toggle"><input type="checkbox"> Drove by</label>' +
+      '<span class="rate"><button type="button" class="up" aria-label="Liked it">👍</button><button type="button" class="down" aria-label="Not for us">👎</button></span>';
+    h.appendChild(actions);
+    var cb = actions.querySelector('input');
+    var up = actions.querySelector('.up');
+    var down = actions.querySelector('.down');
+    function render() {
+      cb.checked = !!s.seen;
+      h.classList.toggle('seen', !!s.seen);
+      up.setAttribute('aria-pressed', s.rating === 'up');
+      down.setAttribute('aria-pressed', s.rating === 'down');
+    }
+    cb.addEventListener('change', function () { s.seen = cb.checked; save(); render(); progress(); });
+    up.addEventListener('click', function () { s.rating = s.rating === 'up' ? null : 'up'; save(); render(); });
+    down.addEventListener('click', function () { s.rating = s.rating === 'down' ? null : 'down'; save(); render(); });
+    render();
+  });
+
+  function progress() {
+    var seen = homes.filter(function (h) { return (state[h.getAttribute('data-id')] || {}).seen; }).length;
+    document.getElementById('progressFill').style.width = (homes.length ? seen / homes.length * 100 : 0) + '%';
+    document.getElementById('progressLabel').textContent = seen + ' of ' + homes.length + ' homes seen';
+  }
+  progress();
+
+  // Day routes: homes in order, ending at the last stop
+  function route(sectionId) {
+    var stops = Array.prototype.slice.call(document.querySelectorAll('#' + sectionId + ' .home')).map(full);
+    if (!stops.length) return '#';
+    var dest = stops.pop();
+    var url = DIR + '&destination=' + encodeURIComponent(dest) + '&travelmode=driving';
+    if (stops.length) url += '&waypoints=' + encodeURIComponent(stops.join('|'));
+    return url;
+  }
+  var start = 'Hilton Garden Inn Boise/Eagle, Eagle, ID';
+  function withStart(url) { return url.replace('&destination=', '&origin=' + encodeURIComponent(start) + '&destination='); }
+  document.querySelector('[data-route="sat"]').href = withStart(route('saturday'));
+  document.querySelector('[data-route="sun"]').href = withStart(route('sunday'));
+
+  // Notes
+  var box = document.getElementById('notesBox');
+  box.value = state._notes || '';
+  box.addEventListener('input', function () { state._notes = box.value; save(); });
+
+  function summary() {
+    var lines = ['Danya Wind — tour notes', ''];
+    homes.forEach(function (h) {
+      var s = state[h.getAttribute('data-id')] || {};
+      if (!s.seen && !s.rating) return;
+      lines.push((s.rating === 'up' ? '👍 ' : s.rating === 'down' ? '👎 ' : '• ') + full(h) + (s.seen ? ' (drove by)' : ''));
+    });
+    if (box.value.trim()) { lines.push('', box.value.trim()); }
+    return lines.join('\n');
+  }
+  document.getElementById('copyNotes').addEventListener('click', function (e) {
+    var btn = e.currentTarget;
+    var text = summary();
+    function done() { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy notes + ratings'; }, 1800); }
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, function () { window.prompt('Copy your notes:', text); }); }
+    else { window.prompt('Copy your notes:', text); }
+  });
+  document.getElementById('emailNotes').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = 'mailto:curtis@curtischism.com?subject=' + encodeURIComponent('My tour notes') + '&body=' + encodeURIComponent(summary());
+  });
+})();
+</script>
+</body>
+</html>
